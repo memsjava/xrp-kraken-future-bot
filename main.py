@@ -219,7 +219,7 @@ class MyPoketra():
             else:
                 self.sellShort(pair, price, variable)
 
-        print("Il est : %s h, perf: %s,  Qu;est qu on va faire: %s" %
+        print("it's now : %s h, Expected perf: %s,  Action to do now: %s" %
               (hour, self.performance, res))
 
     def getPriceAndFundingRate(self, pair, side):
