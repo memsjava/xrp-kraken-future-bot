@@ -173,6 +173,10 @@ class MyPoketra():
                 res = 'degany'
 
         else:
+            # Trend
+            macd1, macdsignal1, macdhist1 = self.calculateMACD(
+                itemDict, 5, 400, 9)
+
             if hour > 0 and hour < 19:
                 macd, macdsignal, macdhist = self.calculateMACD(
                     itemDict, 8, 16, 9)
@@ -181,9 +185,9 @@ class MyPoketra():
                     itemDict, 14, 100, 9)
 
             # crossOver
-            if macd[-2] < macdsignal[-2] and macd[-1] > macdsignal[-1]:
+            if macd[-2] < macdsignal[-2] and macd[-1] > macdsignal[-1] and macd1[-1] > 0:
                 res = 'buy'
-            if macd[-2] > macdsignal[-2] and macd[-1] < macdsignal[-1]:
+            if macd[-2] > macdsignal[-2] and macd[-1] < macdsignal[-1] and macd1[-1] < 0:
                 res = 'sell'
 
         if res == 'sell':
