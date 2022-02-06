@@ -100,21 +100,21 @@ class MyPoketra():
 
         compteValue = int(self.api.getAccount(pair))
         a = round(compteValue/numberOfTrade)
-
-        variable = variableBase if a < 5 else a    # amount per trade
-
-        # compteValue = int(compteValue/variable)
-
+        # amount per trade
+        variable = variableBase if a < 5 else a
         anyPosition = self.api.getOpenPositions(pair)
-
+        # get mark price
         price, fundingRate = self.getPriceAndFundingRate(
-            pair, 'markPrice')  # mark price
-
-        itemDict = self.getItemDict(pair, 1)  # 3min timeframe
+            pair, 'markPrice')
+        # get candles 1minute timeframe
+        itemDict = self.getItemDict(pair, 1)
 
         if anyPosition:
+            # calculate pips to close the order
             atr5 = self.calculateATR(itemDict, 5)
-            self.performance = float(atr5[-1])
+            self.performance = max(0.0012, float(
+                atr5[-3]), float(atr5[-2]), float(atr5[-1]))
+            self.performance = self.performance * max(1, int(5 / levier))
 
             if anyPosition[0]['side'] == 'short':
                 res = 'sell'
@@ -176,19 +176,18 @@ class MyPoketra():
             # Trend
             macd1, macdsignal1, macdhist1 = self.calculateMACD(
                 itemDict, 5, 400, 9)
-
-            if hour > 0 and hour < 19:
-                macd, macdsignal, macdhist = self.calculateMACD(
-                    itemDict, 8, 16, 9)
-            else:
-                macd, macdsignal, macdhist = self.calculateMACD(
-                    itemDict, 14, 100, 9)
+            macd, macdsignal, macdhist = self.calculateMACD(
+                itemDict, 8, 16, 9)
 
             # crossOver
-            if macd[-2] < macdsignal[-2] and macd[-1] > macdsignal[-1] and macd1[-1] > 0:
-                res = 'buy'
-            if macd[-2] > macdsignal[-2] and macd[-1] < macdsignal[-1] and macd1[-1] < 0:
-                res = 'sell'
+            if macd[-2] < macdsignal[-2] and macd[-1] > macdsignal[-1]:
+                self.getAndCloseOrder(pair)
+                if macd1[-1] > 0:
+                    res = 'buy'
+            if macd[-2] > macdsignal[-2] and macd[-1] < macdsignal[-1]:
+                self.getAndCloseOrder(pair)
+                if macd1[-1] < 0:
+                    res = 'sell'
 
         if res == 'sell':
             price = (itemDict['high'][-1] - itemDict['close']
