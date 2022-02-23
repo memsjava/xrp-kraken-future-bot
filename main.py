@@ -90,6 +90,8 @@ class MyPoketra():
         now = datetime.utcnow()
         hour = now.hour
         variableBase = 5    # amount per trade base
+        # stop loss percentage
+        stop_loss = 20
 
         if hour > 0 and hour < 19:
             levier = 3          # max leverage
@@ -106,8 +108,8 @@ class MyPoketra():
         # get mark price
         price, fundingRate = self.getPriceAndFundingRate(
             pair, 'markPrice')
-        # get candles 1minute timeframe
-        itemDict = self.getItemDict(pair, 1)
+        # get candles 5 minute timeframe
+        itemDict = self.getItemDict(pair, 5)
 
         if anyPosition:
             # calculate pips to close the order
@@ -167,6 +169,10 @@ class MyPoketra():
 
                 if pnlValue < - compteValue * 64 / 100 and anyPosition[0]['size'] < compteValue*levier*3/3 and float(anyPosition[0]['price']) - self.performance > price and not res:
                     res = 'buy'
+
+            # stop loss 20%
+            if pnlValue < - compteValue * stop_loss / 100:
+                res_ = "close"
 
             # speculation + wait for propable liquidation
             if anyPosition[0]['size'] < compteValue*levier and not res:
@@ -260,7 +266,7 @@ while (True):
         print("---------")
         q.run()
         print("---------")
-        time.sleep(15)
+        time.sleep(120)
     except Exception as e:
         print(e)
         time.sleep(15)
