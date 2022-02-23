@@ -4,9 +4,11 @@ This bot is only for xrp, When you run this bot, Please do not trade any other k
 
 
 Installation
-1. clone this repository
-git clone https://github.com/memsjava/xrp-kraken-future-bot.git
-cd xrp-kraken-future-bot/
+1. clone this repository:
+
+> git clone https://github.com/memsjava/xrp-kraken-future-bot.git
+
+> cd xrp-kraken-future-bot/
 
 2. edit the key files, paste inside your future kraken keys
 Futures_Private_Key and Futures_Public_Key
