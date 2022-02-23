@@ -1,9 +1,43 @@
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+</p>
 
-Introduction:
-This bot is only for xrp, When you run this bot, Please do not trade any other kraken future pairs at same time.
+<h3 align="center">Bot xrp-future-kraken-perp</h3>
 
+<div align="center">
 
-Installation
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
+</div>
+
+---
+
+<p align="center">
+    This bot is only for xrp, When you run this bot, 
+    <br> 
+    Please do not trade any other kraken future pairs at same time.
+</p>
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
+
+## 🧐 About <a name = "about"></a>
+
+hold crypto, hold for ever. this bot help you to increase xrp portfolio by holding and trading.
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+These instructions will get you a copy of the project up and running on your local machine.
+
+### Installing
+
 1. clone this repository:
 
 > git clone https://github.com/memsjava/xrp-kraken-future-bot.git
@@ -22,13 +56,23 @@ https://mrjbq7.github.io/ta-lib/install.html
 
 > python main.py
 
-you should get something like this in your console
-
 (env) :~/projet0/env/lib/python/krak/future/xrp-kraken-future-bot$ python main.py
 ---------
 it's now : 5 h, Expected perf: 0.0012,  Action to do now: None
 ---------
 
+## 🎈 Usage <a name="usage"></a>
 
+You are responsible by using this code. 
+
+
+## ✍️ Authors <a name = "authors"></a>
+
+- [@memsjava](https://github.com/memsjava) - Idea & Hobies 
+
+
+## 🎉 Acknowledgements <a name = "acknowledgement"></a>
+
+- DYOR
 
 Enjoy :)
