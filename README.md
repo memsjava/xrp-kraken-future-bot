@@ -56,7 +56,7 @@ https://mrjbq7.github.io/ta-lib/install.html
 
 > python main.py
 
-(env) :~/projet0/env/lib/python/krak/future/xrp-kraken-future-bot$ python main.py
+(env) :~/xrp-kraken-future-bot$ python main.py
 ---------
 it's now : 5 h, Expected perf: 0.0012,  Action to do now: None
 ---------
