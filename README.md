@@ -19,6 +19,16 @@ https://mrjbq7.github.io/ta-lib/install.html
 - pip install -r requirement.txt
 
 4. then now you can run it. Dont forget to add some xrp in your trading future account.
-python main.py
+
+> python main.py
+
+you should get something like this in your console
+
+(env) :~/projet0/env/lib/python/krak/future/xrp-kraken-future-bot$ python main.py
+---------
+it's now : 5 h, Expected perf: 0.0012,  Action to do now: None
+---------
+
+
 
 Enjoy :)
