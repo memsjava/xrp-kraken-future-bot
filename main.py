@@ -18,6 +18,7 @@ import sched
 import time
 from datetime import datetime
 import calendar
+import json
 
 
 import proxyFuture as pf
@@ -32,6 +33,10 @@ class MyPoketra():
             print(e)
         self.pair = 'xrpusd'
         self.performance = 0.0012
+        with open("config.json", "r") as jsonfile:
+            data = json.load(jsonfile)
+        self.min_leverage = data['leverage'][0]
+        self.max_leverage = data['leverage'][1]
 
     def calculateMACD(self, itemDict, fast, slow, signal):
         NAME = abstract.Function('MACD')
@@ -94,10 +99,10 @@ class MyPoketra():
         stop_loss = 20
 
         if hour > 0 and hour < 19:
-            levier = 3          # max leverage
+            levier = self.max_leverage         # max leverage
             numberOfTrade = 5   # numnber of trade
         else:
-            levier = 2
+            levier = self.min_leverage
             numberOfTrade = 6   # numnber of trade
 
         compteValue = int(self.api.getAccount(pair))
@@ -174,7 +179,7 @@ class MyPoketra():
             if pnlValue < - compteValue * stop_loss / 100:
                 res_ = "close"
 
-            # speculation + wait for propable liquidation
+            # attempt for propable liquidation
             if anyPosition[0]['size'] < compteValue*levier and not res:
                 res = 'degany'
 
@@ -260,7 +265,6 @@ class MyPoketra():
 
 
 q = MyPoketra()
-
 while (True):
     try:
         print("---------")
